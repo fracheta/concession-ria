@@ -36,9 +36,10 @@
       color: var(--text-light);
       line-height: 1.7;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Animated Background */
+    /* Background Image with Overlay */
     body::before {
       content: '';
       position: fixed;
@@ -46,16 +47,31 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        radial-gradient(ellipse at 20% 50%, rgba(15, 52, 96, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(201, 169, 89, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 80%, rgba(26, 26, 46, 0.5) 0%, transparent 50%);
-      pointer-events: none;
+      background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.08;
       z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Texture Overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      z-index: -1;
+      pointer-events: none;
     }
 
     header {
-      background: rgba(15, 15, 26, 0.98);
+      background: rgba(15, 15, 26, 0.95);
       backdrop-filter: blur(30px);
       padding: 1.5rem 4rem;
       display: flex;
@@ -161,7 +177,7 @@
       padding: 8rem 3rem 10rem;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(180deg, transparent 0%, rgba(15, 15, 26, 0.8) 100%);
+      background: linear-gradient(180deg, rgba(15, 15, 26, 0.9) 0%, rgba(15, 15, 26, 0.7) 100%);
     }
 
     .hero::before {
@@ -171,13 +187,11 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a959' fill-opacity='0.03'%3E%3Cpath d='M50 50v-10h-10v-10h10v-10h10v10h10v10h-10v10h-10zm-30-30v-10h-10v10h10zm0 50v-10h-10v10h10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      animation: shift 20s linear infinite;
-    }
-
-    @keyframes shift {
-      0% { background-position: 0 0; }
-      100% { background-position: 80px 80px; }
+      background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      z-index: -1;
     }
 
     .hero-badge {
@@ -193,6 +207,7 @@
       text-transform: uppercase;
       margin-bottom: 2rem;
       position: relative;
+      backdrop-filter: blur(10px);
     }
 
     .hero h1 {
@@ -240,10 +255,17 @@
       gap: 4rem;
       margin-top: 4rem;
       position: relative;
+      flex-wrap: wrap;
     }
 
     .stat {
       text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201, 169, 89, 0.2);
+      min-width: 150px;
     }
 
     .stat-number {
@@ -259,6 +281,7 @@
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 1px;
+      margin-top: 0.5rem;
     }
 
     .container {
@@ -285,6 +308,51 @@
     .section-title p {
       color: var(--text-muted);
       font-size: 1.1rem;
+    }
+
+    .services-section {
+      margin-bottom: 5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(201, 169, 89, 0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .service-description {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
 
     .grid {
@@ -512,6 +580,66 @@
       fill: currentColor;
     }
 
+    .testimonials-section {
+      margin-top: 5rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(201, 169, 89, 0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .testimonial-role {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
     footer {
       background: rgba(15, 15, 26, 0.98);
       backdrop-filter: blur(30px);
@@ -576,15 +704,15 @@
       }
     }
 
-    .card {
+    .card, .service-card, .testimonial-card {
       animation: fadeInUp 0.8s ease forwards;
       opacity: 0;
     }
 
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-    .card:nth-child(3) { animation-delay: 0.3s; }
-    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(1), .service-card:nth-child(1), .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2), .service-card:nth-child(2), .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3), .service-card:nth-child(3), .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4), .service-card:nth-child(4), .testimonial-card:nth-child(4) { animation-delay: 0.4s; }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -606,7 +734,6 @@
 
       .hero-stats {
         gap: 2rem;
-        flex-wrap: wrap;
       }
 
       .stat-number {
@@ -628,6 +755,10 @@
 
       .card-actions {
         flex-direction: column;
+      }
+
+      .services-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -676,11 +807,85 @@
   </section>
 
   <main class="container">
+    <!-- Services Section -->
+    <div class="services-section">
+      <div class="section-title">
+        <h2>Nossos Serviços Exclusivos</h2>
+        <p>Experiência completa do início ao fim</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <div class="service-title">Inspeção Premium</div>
+          <div class="service-description">Cada veículo passa por rigorosa inspeção de 200 pontos antes de ser disponibilizado.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💰</div>
+          <div class="service-title">Financiamento Facilitado</div>
+          <div class="service-description">Condições especiais de financiamento com as melhores taxas do mercado.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🛡️</div>
+          <div class="service-title">Garantia Estendida</div>
+          <div class="service-description">Garantia de até 2 anos em todos os veículos da nossa coleção premium.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚗</div>
+          <div class="service-title">Test Drive Agendado</div>
+          <div class="service-description">Agende seu test drive e experimente o veículo dos seus sonhos sem compromisso.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vehicles Section -->
     <div class="section-title">
       <h2>Nossa Seleção Especial</h2>
       <p>Veículos criteriosamente selecionados para os clientes mais exigentes</p>
     </div>
     <div class="grid" id="car-grid"></div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials-section">
+      <div class="section-title">
+        <h2>O Que Nossos Clientes Dizem</h2>
+        <p>Experiências reais de clientes satisfeitos</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">Atendimento impecável do início ao fim. Encontrei exatamente o que procurava e o processo foi rápido e transparente.</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RM</div>
+            <div>
+              <div class="testimonial-name">Ricardo Mendes</div>
+              <div class="testimonial-role">Empresário</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">A curadoria de veículos é excepcional. Cada detalhe foi verificado e a qualidade superou minhas expectativas.</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">CS</div>
+            <div>
+              <div class="testimonial-name">Carla Souza</div>
+              <div class="testimonial-role">Médica</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">Melhor experiência de compra que já tive. O atendimento pós-venda é tão bom quanto o pré-venda.</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PF</div>
+            <div>
+              <div class="testimonial-name">Paulo Ferreira</div>
+              <div class="testimonial-role">Advogado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -700,7 +905,7 @@
         <h3>Contato</h3>
         <p>📞 (11) 9999-9999</p>
         <p>✉️ contato@autoprime.com.br</p>
-        <p>📍 São Paulo, SP</p>
+        <p>📍 Av. Paulista, 1000 - São Paulo, SP</p>
       </div>
       <div class="footer-section">
         <h3>Horário</h3>
@@ -728,101 +933,4 @@
         imagem: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80",
         badge: "Destaque Supremo",
         features: [
-          { icon: "📅", text: "Ano 2024" },
-          { icon: "🛣️", text: "12.500 km" },
-          { icon: "⚙️", text: "Automático" },
-          { icon: "⛽", text: "Híbrido" },
-          { icon: "🛡️", text: "Garantia 2 anos" },
-          { icon: "📋", text: "Revisões em dia" }
-        ]
-      },
-      {
-        nome: "Porsche Cayenne Turbo",
-        subtitulo: "SUV Performance",
-        detalhes: "Performance excepcional combinada com versatilidade. O SUV definitivo para quem busca emoção e praticidade.",
-        preco: "R$ 759.900",
-        parcelas: "ou 60x de R$ 12.665",
-        imagem: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80",
-        badge: "Alta Performance",
-        features: [
-          { icon: "📅", text: "Ano 2024" },
-          { icon: "🛣️", text: "8.200 km" },
-          { icon: "⚙️", text: "PDK Automático" },
-          { icon: "⛽", text: "Gasolina" },
-          { icon: "🏁", text: "550 HP" },
-          { icon: "🎯", text: "0-100 em 3.9s" }
-        ]
-      },
-      {
-        nome: "BMW M4 Competition",
-        subtitulo: "Esportivo Premium",
-        detalhes: "Design agressivo e performance brutal. Cada detalhe projetado para proporcionar a experiência definitiva de condução.",
-        preco: "R$ 649.900",
-        parcelas: "ou 60x de R$ 10.831",
-        imagem: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=800&q=80",
-        badge: "Edição Limitada",
-        features: [
-          { icon: "📅", text: "Ano 2023" },
-          { icon: "🛣️", text: "15.800 km" },
-          { icon: "⚙️", text: "M Steptronic" },
-          { icon: "⛽", text: "Gasolina" },
-          { icon: "🏁", text: "510 HP" },
-          { icon: "🎨", text: "Pintura Especial" }
-        ]
-      },
-      {
-        nome: "Range Rover Autobiography",
-        subtitulo: "SUV Luxo Absoluto",
-        detalhes: "O epítome do luxo britânico em um SUV. Conforto real, capacidade off-road e presença imponente.",
-        preco: "R$ 989.900",
-        parcelas: "ou 60x de R$ 16.498",
-        imagem: "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=800&q=80",
-        badge: "Exclusivo",
-        features: [
-          { icon: "📅", text: "Ano 2024" },
-          { icon: "🛣️", text: "5.900 km" },
-          { icon: "⚙️", text: "Automático" },
-          { icon: "⛽", text: "Diesel" },
-          { icon: "👑", text: "Versão Top" },
-          { icon: "🔊", text: "Som Premium" }
-        ]
-      }
-    ];
-
-    document.getElementById('nav-zap').href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent("Olá! Gostaria de uma consultoria especializada sobre os veículos disponíveis na AutoPrime.")}`;
-
-    const grid = document.getElementById('car-grid');
-
-    carros.forEach(carro => {
-      const mensagem = encodeURIComponent(`Olá! Tenho grande interesse no ${carro.nome}. Gostaria de agendar uma visita para conhecer o veículo pessoalmente.`);
-      const mensagemDetalhes = encodeURIComponent(`Olá! Gostaria de receber mais informações técnicas sobre o ${carro.nome}.`);
-      const urlZap = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensagem}`;
-      const urlDetalhes = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensagemDetalhes}`;
-
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="card-image-wrapper">
-          <img src="${carro.imagem}" alt="${carro.nome}">
-          <div class="card-overlay"></div>
-          <div class="card-badge">${carro.badge}</div>
-        </div>
-        <div class="card-body">
-          <h2 class="card-title">${carro.nome}</h2>
-          <div class="card-subtitle">${carro.subtitulo}</div>
-          <p class="card-description">${carro.detalhes}</p>
-          <div class="card-features">
-            ${carro.features.map(feature => `
-              <div class="feature-item">
-                <span>${feature.icon}</span>
-                <span>${feature.text}</span>
-              </div>
-            `).join('')}
-          </div>
-          <div class="card-price-section">
-            <div class="card-price">${carro.preco} <span>à vista</span></div>
-            <div class="card-price-installments">${carro.parcelas}</div>
-            <div class="card-actions">
-              <a href="${urlZap}" target="_blank" class="card-btn">
-                <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c
+          { icon: "
