@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelo - Revenda de Veículos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #1e293b;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #3b82f6;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #3b82f6;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #f8fafc;
+    }
+
+    .btn-header {
+      background: #25d366;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: background 0.3s;
+    }
+
+    .btn-header:hover {
+      background: #1da851;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #334155;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #f8fafc;
+    }
+
+    .card-info {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 1rem;
+    }
+
+    .card-price {
+      font-size: 1.5rem;
+      color: #3b82f6;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      margin-top: auto;
+    }
+
+    .card-btn {
+      width: 100%;
+      background: #25d366;
+      color: #ffffff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .card-btn:hover {
+      background: #1da851;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #020617;
+      color: #64748b;
+      font-size: 0.9rem;
+      border-top: 1px solid #1e293b;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">SUA<span>EMPRESA</span></a>
+    <a id="nav-zap" href="#" target="_blank" class="btn-header">Falar no WhatsApp</a>
+  </header>
+
+  <section class="hero">
+    <h1>Encontre Seu Veículo Ideal</h1>
+    <p>Confira nossas opções disponíveis e entre em contato direto pelo WhatsApp para realizar um orçamento ou simulação.</p>
+  </section>
+
+  <main class="container">
+    <div class="grid" id="car-grid"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Nome da Empresa. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Substitua pelo número real no formato: DDD + Número (ex: 5511999999999)
+    const TELEFONO_WHATSAPP = "5500999999999";
+
+    // Estrutura de dados genérica para os veículos
+    const carros = [
+      {
+        nome: "Modelo Sedan 01",
+        detalhes: "Ano 2023 • 20.000 km • Flex",
+        preco: "R$ 00.000",
+        imagem: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80"
+      },
+      {
+        nome: "Modelo SUV 02",
+        detalhes: "Ano 2024 • 10.000 km • Automático",
+        preco: "R$ 00.000",
+        imagem: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=80"
+      },
+      {
+        nome: "Modelo Hatch 03",
+        detalhes: "Ano 2022 • 35.000 km • Manual",
+        preco: "R$ 00.000",
+        imagem: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=600&q=80"
+      },
+      {
+        nome: "Modelo Pickup 04",
+        detalhes: "Ano 2023 • 15.000 km • Diesel",
+        preco: "R$ 00.000",
+        imagem: "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=600&q=80"
+      }
+    ];
+
+    // Configuração do botão do cabeçalho
+    document.getElementById('nav-zap').href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent("Olá! Vim pelo site e gostaria de mais informações.")}`;
+
+    // Renderização dos cards
+    const grid = document.getElementById('car-grid');
+
+    carros.forEach(carro => {
+      const mensagem = encodeURIComponent(`Olá! Tenho interesse no veículo: ${carro.nome}. Pode me enviar mais detalhes?`);
+      const urlZap = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensagem}`;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${carro.imagem}" alt="${carro.nome}">
+        <div class="card-body">
+          <h2 class="card-title">${carro.nome}</h2>
+          <p class="card-info">${carro.detalhes}</p>
+          <div class="card-price">${carro.preco}</div>
+          <a href="${urlZap}" target="_blank" class="card-btn">Chamar no WhatsApp</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
