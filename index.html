@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutoPrime - Veículos Premium</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>AutoPrime - Experiência Premium em Veículos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1a1a2e;
-      --secondary: #16213e;
+      --primary: #0f0f1a;
+      --secondary: #1a1a2e;
+      --tertiary: #16213e;
       --accent: #0f3460;
       --gold: #c9a959;
       --gold-light: #e0c578;
-      --text-light: #e8e8e8;
-      --text-muted: #a0a0a0;
+      --gold-dark: #a8893a;
+      --platinum: #e5e4e2;
+      --text-light: #f0f0f0;
+      --text-muted: #b0b0b0;
       --white: #ffffff;
-      --shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-      --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.5);
+      --black: #000000;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.6);
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     * {
@@ -27,72 +32,136 @@
     }
 
     body {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      background: var(--primary);
       color: var(--text-light);
       line-height: 1.7;
-      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(15, 52, 96, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(201, 169, 89, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(26, 26, 46, 0.5) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     header {
-      background: rgba(26, 26, 46, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 1.2rem 4rem;
+      background: rgba(15, 15, 26, 0.98);
+      backdrop-filter: blur(30px);
+      padding: 1.5rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(201, 169, 89, 0.3);
+      border-bottom: 1px solid rgba(201, 169, 89, 0.2);
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      box-shadow: 0 0 30px rgba(201, 169, 89, 0.5);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(201, 169, 89, 0.5); }
+      50% { box-shadow: 0 0 50px rgba(201, 169, 89, 0.8); }
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
       font-size: 2rem;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--gold);
       text-decoration: none;
       letter-spacing: -0.5px;
-      transition: all 0.3s ease;
+      line-height: 1;
     }
 
-    .logo:hover {
-      color: var(--gold-light);
-      transform: translateY(-1px);
-    }
-
-    .logo span {
+    .logo-text span {
       color: var(--white);
-      font-weight: 300;
+      font-weight: 400;
+    }
+
+    .logo-subtitle {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .btn-header {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
       color: var(--primary);
-      padding: 0.8rem 1.8rem;
+      padding: 1rem 2rem;
       border: none;
       border-radius: 50px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(201, 169, 89, 0.3);
+      letter-spacing: 1px;
+      transition: var(--transition);
+      box-shadow: 0 5px 20px rgba(201, 169, 89, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-header:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .btn-header:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(201, 169, 89, 0.5);
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(201, 169, 89, 0.6);
     }
 
     .hero {
       text-align: center;
-      padding: 10rem 3rem 8rem;
-      background: linear-gradient(135deg, rgba(15, 52, 96, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+      padding: 8rem 3rem 10rem;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(180deg, transparent 0%, rgba(15, 15, 26, 0.8) 100%);
     }
 
     .hero::before {
@@ -102,128 +171,225 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a959' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a959' fill-opacity='0.03'%3E%3Cpath d='M50 50v-10h-10v-10h10v-10h10v10h10v10h-10v10h-10zm-30-30v-10h-10v10h10zm0 50v-10h-10v10h10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      animation: shift 20s linear infinite;
+    }
+
+    @keyframes shift {
+      0% { background-position: 0 0; }
+      100% { background-position: 80px 80px; }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201, 169, 89, 0.15);
+      border: 1px solid rgba(201, 169, 89, 0.3);
+      color: var(--gold);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      position: relative;
     }
 
     .hero h1 {
-      font-size: 4rem;
-      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
       margin-bottom: 1.5rem;
       color: var(--white);
       letter-spacing: -2px;
       line-height: 1.1;
       position: relative;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
     }
 
-    .hero h1 span {
+    .hero h1 .gold-text {
       color: var(--gold);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1 .gold-text::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      border-radius: 2px;
     }
 
     .hero p {
       font-size: 1.4rem;
       color: var(--text-muted);
-      max-width: 800px;
-      margin: 0 auto 3rem;
+      max-width: 900px;
+      margin: 2rem auto 3rem;
       font-weight: 300;
       position: relative;
       line-height: 1.8;
     }
 
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     .container {
       max-width: 1400px;
-      margin: -3rem auto 0;
+      margin: -2rem auto 0;
       padding: 0 3rem 6rem;
       position: relative;
       z-index: 10;
     }
 
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 3rem;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
       overflow: hidden;
       border: 1px solid rgba(201, 169, 89, 0.2);
       display: flex;
       flex-direction: column;
-      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: var(--transition);
       position: relative;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .card::after {
-      content: '';
+    .card:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: var(--gold);
+      box-shadow: var(--shadow-hover);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .card-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      filter: saturate(0.9) contrast(1.1);
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+      filter: saturate(1.2) contrast(1.2);
+    }
+
+    .card-overlay {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      border-radius: 20px;
-      box-shadow: var(--shadow-hover);
+      background: linear-gradient(180deg, transparent 50%, rgba(15, 15, 26, 0.9) 100%);
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transition: var(--transition);
     }
 
-    .card:hover {
-      transform: translateY(-12px);
-      border-color: var(--gold);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .card:hover::after {
+    .card:hover .card-overlay {
       opacity: 1;
     }
 
-    .card img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      transition: all 0.5s ease;
-      filter: saturate(0.8);
-    }
-
-    .card:hover img {
-      transform: scale(1.05);
-      filter: saturate(1.2);
+    .card-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: var(--primary);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(201, 169, 89, 0.4);
+      z-index: 10;
     }
 
     .card-body {
-      padding: 2rem;
+      padding: 2.5rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
       position: relative;
     }
 
-    .card-badge {
-      position: absolute;
-      top: -20px;
-      right: 20px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-      color: var(--primary);
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 10px rgba(201, 169, 89, 0.4);
-    }
-
     .card-title {
-      font-size: 1.6rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
       font-weight: 700;
       margin-bottom: 0.8rem;
       color: var(--white);
       letter-spacing: -0.5px;
     }
 
-    .card-info {
+    .card-subtitle {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .card-description {
       font-size: 0.95rem;
       color: var(--text-muted);
       margin-bottom: 1.5rem;
@@ -232,47 +398,69 @@
     }
 
     .card-features {
-      display: flex;
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
       margin-bottom: 1.5rem;
-      flex-wrap: wrap;
     }
 
-    .feature-tag {
-      background: rgba(201, 169, 89, 0.1);
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .feature-icon {
+      width: 20px;
+      height: 20px;
       color: var(--gold);
-      padding: 0.4rem 0.8rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      border: 1px solid rgba(201, 169, 89, 0.3);
+      flex-shrink: 0;
+    }
+
+    .card-price-section {
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(201, 169, 89, 0.2);
     }
 
     .card-price {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: var(--gold);
       font-weight: 800;
-      margin-bottom: 1.5rem;
-      margin-top: auto;
       letter-spacing: -1px;
+      line-height: 1;
     }
 
     .card-price span {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       font-weight: 400;
       letter-spacing: 0;
     }
 
+    .card-price-installments {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
     .card-btn {
-      width: 100%;
+      flex: 1;
       background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
       color: var(--white);
       border: none;
-      padding: 1.1rem;
+      padding: 1rem;
       border-radius: 50px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       cursor: pointer;
@@ -281,38 +469,98 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      transition: var(--transition);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
     }
 
     .card-btn:hover {
       background: linear-gradient(135deg, #128c7e 0%, #25d366 100%);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    }
+
+    .card-btn-secondary {
+      flex: 1;
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      padding: 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .card-btn-secondary:hover {
+      background: var(--gold);
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(201, 169, 89, 0.4);
     }
 
     .whatsapp-icon {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       fill: currentColor;
     }
 
     footer {
-      text-align: center;
-      padding: 3rem;
-      background: rgba(26, 26, 46, 0.95);
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      background: rgba(15, 15, 26, 0.98);
+      backdrop-filter: blur(30px);
+      padding: 4rem 3rem 2rem;
       border-top: 1px solid rgba(201, 169, 89, 0.2);
-      font-weight: 300;
-      backdrop-filter: blur(10px);
     }
 
-    footer p {
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-section h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-section p, .footer-section a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+      color: var(--gold);
+      transform: translateX(5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(201, 169, 89, 0.1);
+    }
+
+    .footer-bottom p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
       margin: 0.5rem 0;
     }
 
-    footer .gold-text {
+    .gold-text {
       color: var(--gold);
     }
 
@@ -320,7 +568,7 @@
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(50px);
       }
       to {
         opacity: 1;
@@ -329,7 +577,7 @@
     }
 
     .card {
-      animation: fadeInUp 0.6s ease forwards;
+      animation: fadeInUp 0.8s ease forwards;
       opacity: 0;
     }
 
@@ -342,24 +590,31 @@
     @media (max-width: 768px) {
       header {
         padding: 1rem 2rem;
-        flex-direction: column;
-        gap: 1rem;
       }
 
       .hero {
-        padding: 6rem 2rem 4rem;
+        padding: 6rem 1.5rem 4rem;
       }
 
       .hero h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
       }
 
       .hero p {
         font-size: 1.1rem;
       }
 
+      .hero-stats {
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
       .container {
-        padding: 0 1.5rem 4rem;
+        padding: 0 1rem 4rem;
       }
 
       .grid {
@@ -367,8 +622,12 @@
         gap: 2rem;
       }
 
-      .card img {
-        height: 200px;
+      .card-image-wrapper {
+        height: 220px;
+      }
+
+      .card-actions {
+        flex-direction: column;
       }
     }
   </style>
@@ -376,27 +635,84 @@
 <body>
 
   <header>
-    <a href="#" class="logo">AUTO<span>PRIME</span></a>
+    <div class="logo">
+      <div class="logo-icon">AP</div>
+      <div>
+        <a href="#" class="logo-text">AUTO<span>PRIME</span></a>
+        <div class="logo-subtitle">Premium Vehicles</div>
+      </div>
+    </div>
     <a id="nav-zap" href="#" target="_blank" class="btn-header">
       <svg class="whatsapp-icon" viewBox="0 0 24 24" style="margin-right: 0.5rem;">
         <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
-      Falar no WhatsApp
+      Consultoria Especializada
     </a>
   </header>
 
   <section class="hero">
-    <h1>Encontre o Seu<br><span>Veículo dos Sonhos</span></h1>
-    <p>Explore nossa seleção exclusiva de veículos premium e conecte-se diretamente com nossos especialistas para uma experiência de compra personalizada e transparente.</p>
+    <div class="hero-badge">✦ Coleção Exclusiva 2026 ✦</div>
+    <h1>Excelência em<br><span class="gold-text">Veículos Premium</span></h1>
+    <p>Descubra uma experiência única de compra com nossa curadoria especializada. Cada veículo é rigorosamente selecionado para atender aos mais altos padrões de qualidade, desempenho e elegância.</p>
+    
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Anos de Excelência</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2.500+</div>
+        <div class="stat-label">Clientes Satisfeitos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Recomendação</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Suporte Premium</div>
+      </div>
+    </div>
   </section>
 
   <main class="container">
+    <div class="section-title">
+      <h2>Nossa Seleção Especial</h2>
+      <p>Veículos criteriosamente selecionados para os clientes mais exigentes</p>
+    </div>
     <div class="grid" id="car-grid"></div>
   </main>
 
   <footer>
-    <p>&copy; 2026 <span class="gold-text">AutoPrime</span> - Excelência em Veículos Premium</p>
-    <p style="font-size: 0.8rem;">Todos os direitos reservados • Atendimento personalizado</p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>AutoPrime</h3>
+        <p>Excelência em veículos premium desde 2010. Nossa paixão é conectar você ao carro dos seus sonhos.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <a href="#">Veículos Disponíveis</a>
+        <a href="#">Sobre Nós</a>
+        <a href="#">Financiamento</a>
+        <a href="#">Contato</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contato</h3>
+        <p>📞 (11) 9999-9999</p>
+        <p>✉️ contato@autoprime.com.br</p>
+        <p>📍 São Paulo, SP</p>
+      </div>
+      <div class="footer-section">
+        <h3>Horário</h3>
+        <p>Seg - Sex: 8h às 19h</p>
+        <p>Sábado: 9h às 17h</p>
+        <p>Domingo: Fechado</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 <span class="gold-text">AutoPrime</span> - Excelência em Veículos Premium</p>
+      <p style="font-size: 0.85rem;">Todos os direitos reservados • Experiência premium garantida</p>
+    </div>
   </footer>
 
   <script>
@@ -404,70 +720,109 @@
 
     const carros = [
       {
-        nome: "Executive Sedan Sport",
-        detalhes: "Sedan executivo com acabamento premium e tecnologia de ponta",
-        preco: "R$ 389.900",
+        nome: "Mercedes-Benz S-Class",
+        subtitulo: "Luxo Executivo",
+        detalhes: "A definição máxima de luxo e tecnologia automotiva. Experimente o ápice do conforto e sofisticação.",
+        preco: "R$ 889.900",
+        parcelas: "ou 60x de R$ 14.831",
         imagem: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80",
-        badge: "Destaque",
-        features: ["2023", "20.000 km", "Automático", "Flex"]
+        badge: "Destaque Supremo",
+        features: [
+          { icon: "📅", text: "Ano 2024" },
+          { icon: "🛣️", text: "12.500 km" },
+          { icon: "⚙️", text: "Automático" },
+          { icon: "⛽", text: "Híbrido" },
+          { icon: "🛡️", text: "Garantia 2 anos" },
+          { icon: "📋", text: "Revisões em dia" }
+        ]
       },
       {
-        nome: "Premium SUV 4x4",
-        detalhes: "SUV premium com tração integral e conforto superior",
-        preco: "R$ 459.900",
+        nome: "Porsche Cayenne Turbo",
+        subtitulo: "SUV Performance",
+        detalhes: "Performance excepcional combinada com versatilidade. O SUV definitivo para quem busca emoção e praticidade.",
+        preco: "R$ 759.900",
+        parcelas: "ou 60x de R$ 12.665",
         imagem: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80",
-        badge: "Novo",
-        features: ["2024", "10.000 km", "Diesel", "Completo"]
+        badge: "Alta Performance",
+        features: [
+          { icon: "📅", text: "Ano 2024" },
+          { icon: "🛣️", text: "8.200 km" },
+          { icon: "⚙️", text: "PDK Automático" },
+          { icon: "⛽", text: "Gasolina" },
+          { icon: "🏁", text: "550 HP" },
+          { icon: "🎯", text: "0-100 em 3.9s" }
+        ]
       },
       {
-        nome: "Urban Hatchback Pro",
-        detalhes: "Hatchback urbano com excelente custo-benefício",
-        preco: "R$ 89.900",
+        nome: "BMW M4 Competition",
+        subtitulo: "Esportivo Premium",
+        detalhes: "Design agressivo e performance brutal. Cada detalhe projetado para proporcionar a experiência definitiva de condução.",
+        preco: "R$ 649.900",
+        parcelas: "ou 60x de R$ 10.831",
         imagem: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=800&q=80",
-        badge: "Oferta",
-        features: ["2022", "35.000 km", "Manual", "Flex"]
+        badge: "Edição Limitada",
+        features: [
+          { icon: "📅", text: "Ano 2023" },
+          { icon: "🛣️", text: "15.800 km" },
+          { icon: "⚙️", text: "M Steptronic" },
+          { icon: "⛽", text: "Gasolina" },
+          { icon: "🏁", text: "510 HP" },
+          { icon: "🎨", text: "Pintura Especial" }
+        ]
       },
       {
-        nome: "Rugged Pickup Truck",
-        detalhes: "Picape robusta para trabalho e aventura",
-        preco: "R$ 319.900",
+        nome: "Range Rover Autobiography",
+        subtitulo: "SUV Luxo Absoluto",
+        detalhes: "O epítome do luxo britânico em um SUV. Conforto real, capacidade off-road e presença imponente.",
+        preco: "R$ 989.900",
+        parcelas: "ou 60x de R$ 16.498",
         imagem: "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=800&q=80",
-        badge: "Premium",
-        features: ["2023", "15.000 km", "4x4", "Diesel"]
+        badge: "Exclusivo",
+        features: [
+          { icon: "📅", text: "Ano 2024" },
+          { icon: "🛣️", text: "5.900 km" },
+          { icon: "⚙️", text: "Automático" },
+          { icon: "⛽", text: "Diesel" },
+          { icon: "👑", text: "Versão Top" },
+          { icon: "🔊", text: "Som Premium" }
+        ]
       }
     ];
 
-    document.getElementById('nav-zap').href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent("Olá! Gostaria de mais informações sobre os veículos disponíveis na AutoPrime.")}`;
+    document.getElementById('nav-zap').href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent("Olá! Gostaria de uma consultoria especializada sobre os veículos disponíveis na AutoPrime.")}`;
 
     const grid = document.getElementById('car-grid');
 
     carros.forEach(carro => {
-      const mensagem = encodeURIComponent(`Olá! Tenho interesse no veículo: ${carro.nome} (${carro.preco}). Poderia me enviar mais detalhes?`);
+      const mensagem = encodeURIComponent(`Olá! Tenho grande interesse no ${carro.nome}. Gostaria de agendar uma visita para conhecer o veículo pessoalmente.`);
+      const mensagemDetalhes = encodeURIComponent(`Olá! Gostaria de receber mais informações técnicas sobre o ${carro.nome}.`);
       const urlZap = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensagem}`;
+      const urlDetalhes = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensagemDetalhes}`;
 
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
-        <img src="${carro.imagem}" alt="${carro.nome}">
-        <div class="card-body">
+        <div class="card-image-wrapper">
+          <img src="${carro.imagem}" alt="${carro.nome}">
+          <div class="card-overlay"></div>
           <div class="card-badge">${carro.badge}</div>
-          <h2 class="card-title">${carro.nome}</h2>
-          <p class="card-info">${carro.detalhes}</p>
-          <div class="card-features">
-            ${carro.features.map(feature => `<span class="feature-tag">${feature}</span>`).join('')}
-          </div>
-          <div class="card-price">${carro.preco} <span>à vista</span></div>
-          <a href="${urlZap}" target="_blank" class="card-btn">
-            <svg class="whatsapp-icon" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            Chamar no WhatsApp
-          </a>
         </div>
-      `;
-      grid.appendChild(card);
-    });
-  </script>
-
-</body>
-</html>
+        <div class="card-body">
+          <h2 class="card-title">${carro.nome}</h2>
+          <div class="card-subtitle">${carro.subtitulo}</div>
+          <p class="card-description">${carro.detalhes}</p>
+          <div class="card-features">
+            ${carro.features.map(feature => `
+              <div class="feature-item">
+                <span>${feature.icon}</span>
+                <span>${feature.text}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div class="card-price-section">
+            <div class="card-price">${carro.preco} <span>à vista</span></div>
+            <div class="card-price-installments">${carro.parcelas}</div>
+            <div class="card-actions">
+              <a href="${urlZap}" target="_blank" class="card-btn">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c
